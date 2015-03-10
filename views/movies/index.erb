@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Movie Catalogue Deluxe: Movies </title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+
+  <body>
+    <form id="movie_search" action="/movies" method="post">
+      <label for="grocery_item">What movie are you looking for?</label>
+      <input type="text" id="movie_string" name="movie_string">
+      <button type="submit" class="button-group-round">Search</button>
+    </form>
+
+    <table>
+      <thead>
+        <tr>
+          <th><a href="/movies?sort=title">Movie</a></th>
+          <th><a href="/movies?sort=year">Year</a></th>
+          <th><a href="/movies?sort=rating">Rating</a></th>
+          <th>Genre</th>
+          <th>Studio</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% movies.each do |movie| %>
+        <tr>
+          <td><a href="/movies/<%=movie["id"]%>"><%= movie["title"] %></a></td>
+          <td><%= movie["year"] %></td>
+          <td><%= movie["rating"] %></td>
+          <td><%= movie["genre"] %></td>
+          <td><%= movie["studio"] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

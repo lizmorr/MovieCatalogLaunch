@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Movie Catalogue Deluxe: Movie Details </title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+
+  <body>
+    <h2><%= details[0]["title"] %></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Year</th>
+          <th>Rating</th>
+          <th>Genre</th>
+          <th>Studio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= details[0]["year"] %></td>
+          <td><%= details[0]["rating"] %></a></td>
+          <td><%= details[0]["genre"] %></a></td>
+          <td><%= details[0]["studio"] %></a></td>
+        </tr>
+    </tbody>
+    </table>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Actor</th>
+          <th>Character</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% cast.each do |cast| %>
+        <tr>
+          <td><a href="/actors/<%=cast["actor"]%>"><%= cast["actor"] %></a></td>
+          <td>
+            <% if cast["character"].nil? %>
+              Role not given
+            <% else %>
+              <%= cast["character"] %>
+            <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+
+    <a href="/movies">Back to the movies</a>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title> Movie Catalogue Deluxe: Actor Details </title>
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <script src="js/vendor/modernizr.js"></script>
+  </head>
+
+
+  <body>
+    <h2><%= actor_details[0]["name"] %></h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Movie</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% actor_details.each do |actor| %>
+        <tr>
+          <td><a href="/movies/<%=actor["movie_id"]%>"><%= actor["title"] %></a></td>
+          <td>
+            <% if actor["character"] %>
+              <%= actor["character"] %>
+            <% else %>
+              Role not given
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
+
+    <p>
+      <a href="/actors">Back to the actors</a>
+    </p>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/foundation.min.js"></script>
+    <script>
+    $(document).foundation();
+    </script>
+  </body>
+</html>
