@@ -27,7 +27,8 @@ SELECT actors.name, COUNT (movies.title) AS movie_count
 FROM cast_members
 JOIN actors ON cast_members.actor_id = actors.id
 JOIN movies ON cast_members.movie_id = movies.id
-GROUP BY actors.name;
+GROUP BY actors.name
+LIMIT 20 OFFSET $1;
 eos
 
 GET_ACTOR_DETAIL = <<-eos
@@ -42,7 +43,10 @@ eos
 
 
 get '/actors' do
-  actors = db_connection { |conn| conn.exec(GET_ALL_ACTORS)}
+
+  params["page"] = 1 if params["page"].nil?
+
+  actors = db_connection { |conn| conn.exec_params(GET_ALL_ACTORS,[(params[:page].to_i-1)*20])}
   all_actors = actors.to_a
 
   erb :'actors/index', locals: {actors: all_actors}

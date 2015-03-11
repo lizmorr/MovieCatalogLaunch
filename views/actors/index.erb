@@ -41,6 +41,14 @@
       </div>
     </div>
 
+    <p><a href="/actors?page=<%= ((params["page"].to_i)-1) %>">
+      Previous 20
+    </a></p>
+    <p><a href="/actors?page=<%= ((params["page"].to_i)+1) %>">
+      Next 20
+    </a></p>
+
+
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script>
