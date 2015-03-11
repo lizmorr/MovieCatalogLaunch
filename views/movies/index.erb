@@ -41,10 +41,10 @@
       <% end %>
     </tbody>
     </table>
-    <p><a href="/movies?page=<%= ((params["page"].to_i)-1) %>">
+    <p><a href="/movies?page=<%= ((params["page"].to_i)-1) %>&sort=<%= params["sort"] %>">
       Previous 20
     </a></p>
-    <p><a href="/movies?page=<%= ((params["page"].to_i)+1) %>">
+    <p><a href="/movies?page=<%= ((params["page"].to_i)+1) %>&sort=<%= params["sort"] %>">
       Next 20
     </a></p>
 

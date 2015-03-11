@@ -61,6 +61,7 @@ get '/actors/:id' do
 end
 
 get '/movies' do
+  binding.pry
   sort_by = sort_by(params)
 
   params["page"] = 1 if params["page"].nil?
