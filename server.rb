@@ -57,8 +57,9 @@ get '/actors/:id' do
 end
 
 get '/movies' do
-
   sort_by = sort_by(params)
+
+  params["page"] = 1 if params["page"].nil?
 
   sql_statement = <<-eos
   SELECT movies.title, movies.year, movies.rating, movies.id,
@@ -66,13 +67,14 @@ get '/movies' do
   FROM movies
   FULL OUTER JOIN genres ON movies.genre_id = genres.id
   FULL OUTER JOIN studios ON movies.studio_id = studios.id
-  ORDER BY #{sort_by};
+  ORDER BY #{sort_by}
+  LIMIT 20 OFFSET #{(params[:page].to_i-1)*20};
   eos
 
   movies = db_connection { |conn| conn.exec(sql_statement)}
   all_movies = movies.to_a
 
-  erb :'movies/index', locals: {movies: all_movies}
+  erb :'movies/index', locals: {movies: all_movies, params: params}
 end
 
 get '/movies/:id' do
